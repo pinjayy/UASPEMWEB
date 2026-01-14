@@ -104,19 +104,30 @@
 
         /* Modal */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 40px; border-radius: 15px; width: 100%; max-width: 400px; position: relative; text-align: center; }
-        .form-input { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; }
+        .modal-content { background: white; padding: 40px; border-radius: 15px; width: 90%; max-width: 400px; position: relative; text-align: center; }
+        .form-input { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
         .submit-btn { width: 100%; background: var(--primary-navy); color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
         .hidden { display: none !important; }
         body.high-contrast { background: #000; color: #ffff00; }
         body.high-contrast .job-card, body.high-contrast header { background: #1a1a1a; border: 1px solid #ffff00; color: #ffff00; }
+
+        /* --- RESPONSIVE MOBILE ADJUSTMENTS --- */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 10px; gap: 15px; top: 0; }
+            .a11y-bar { justify-content: center; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .hero-content h1 { font-size: 1.8rem; }
+            .job-grid { grid-template-columns: 1fr; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .social-icons { justify-content: center; }
+        }
     </style>
 </head>
 <body>
 
     <div class="a11y-bar">
-        <button class="a11y-btn" onclick="window.speechSynthesis.cancel()"><i class="fa-solid fa-volume-xmark"></i> Stop Audio</button>
+        <button class="a11y-btn" onclick="window.speechSynthesis.cancel()"><i class="fa-solid fa-volume-xmark"></i>Audio</button>
         <button class="a11y-btn" onclick="document.body.classList.toggle('high-contrast')"><i class="fa-solid fa-circle-half-stroke"></i> Kontras</button>
     </div>
 
@@ -212,23 +223,13 @@
                 <div id="jobs-p2" class="job-page hidden">
                     <div class="job-grid">
                         <div class="job-card">
-                            <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
                             <div class="job-title">Social Media Admin</div><div class="company-name">Creative Studio</div>
-                            <ul class="job-criteria">
-                                <li>Mengelola postingan harian di Instagram & TikTok.</li>
-                                <li>Interaksi dengan followers melalui komentar/DM.</li>
-                                <li class="highlight-difabel"><i class="fa-solid fa-brain"></i> Jam kerja fleksibel, mendukung neurodivergent.</li>
-                            </ul>
+                            <ul class="job-criteria"><li>Mengelola Instagram & TikTok.</li><li class="highlight-difabel">Mendukung neurodivergent.</li></ul>
                             <button class="btn-apply" onclick="checkAuth('Social Media Admin')">Lamar Sekarang</button>
                         </div>
                         <div class="job-card">
-                            <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
                             <div class="job-title">Data Entry</div><div class="company-name">Global Finance</div>
-                            <ul class="job-criteria">
-                                <li>Input data transaksi harian ke sistem keuangan.</li>
-                                <li>Verifikasi akurasi angka dan dokumen.</li>
-                                <li class="highlight-difabel"><i class="fa-solid fa-wheelchair"></i> Meja kerja ergonomis & akses kursi roda tersedia.</li>
-                            </ul>
+                            <ul class="job-criteria"><li>Input data harian.</li><li class="highlight-difabel">Akses kursi roda tersedia.</li></ul>
                             <button class="btn-apply" onclick="checkAuth('Data Entry')">Lamar Sekarang</button>
                         </div>
                     </div>
@@ -237,23 +238,13 @@
                 <div id="jobs-p3" class="job-page hidden">
                     <div class="job-grid">
                         <div class="job-card">
-                            <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
                             <div class="job-title">Network Engineer</div><div class="company-name">ITPLN Infra</div>
-                            <ul class="job-criteria">
-                                <li>Konfigurasi router dan switch Cisco/Mikrotik.</li>
-                                <li>Monitoring stabilitas jaringan kampus.</li>
-                                <li class="highlight-difabel"><i class="fa-solid fa-universal-access"></i> Fasilitas toilet disabilitas dan lift di area server.</li>
-                            </ul>
+                            <ul class="job-criteria"><li>Konfigurasi router.</li><li class="highlight-difabel">Lift di area server tersedia.</li></ul>
                             <button class="btn-apply" onclick="checkAuth('Network Engineer')">Lamar Sekarang</button>
                         </div>
                         <div class="job-card">
-                            <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
                             <div class="job-title">Junior Editor</div><div class="company-name">Media Kita</div>
-                            <ul class="job-criteria">
-                                <li>Editing video pendek menggunakan Adobe Premiere.</li>
-                                <li>Penambahan teks dan transisi kreatif.</li>
-                                <li class="highlight-difabel"><i class="fa-solid fa-hands-holding"></i> Dukungan peralatan bantu sesuai kebutuhan individu.</li>
-                            </ul>
+                            <ul class="job-criteria"><li>Editing Premiere Pro.</li><li class="highlight-difabel">Dukungan peralatan bantu.</li></ul>
                             <button class="btn-apply" onclick="checkAuth('Junior Editor')">Lamar Sekarang</button>
                         </div>
                     </div>
@@ -272,31 +263,28 @@
         <section class="container">
             <div class="about-page-container">
                 <h2 style="color: var(--primary-navy); margin-bottom: 20px;">Tentang Website Partnership</h2>
-                <p>Website <strong>Partnership</strong> adalah platform inovatif yang dirancang untuk menjembatani talenta-talenta luar biasa dengan peluang karir yang inklusif di ekosistem Institut Teknologi PLN dan mitra industri lainnya.</p>
-                
+                <p>Website <strong>Partnership</strong> adalah platform inovatif untuk menjembatani talenta disabilitas dengan peluang karir inklusif.</p>
                 <div class="sdg-box">
                     <h4>SDG 10: Mengurangi Kesenjangan</h4>
-                    <p>Kami berkomitmen untuk mendukung inklusi sosial dan ekonomi bagi semua orang, terlepas dari latar belakang fisik atau sosial mereka, dengan menyediakan akses yang setara terhadap informasi lowongan pekerjaan.</p>
+                    <p>Mendukung inklusi sosial dan ekonomi bagi semua orang.</p>
                 </div>
-
                 <div class="sdg-box">
-                    <h4>SDG 17: Kemitraan Untuk Mencapai Tujuan</h4>
-                    <p>Melalui kolaborasi antara akademisi, industri, dan masyarakat, platform ini menjadi bukti nyata kekuatan kemitraan dalam menciptakan solusi berkelanjutan bagi pertumbuhan ekonomi nasional.</p>
+                    <h4>SDG 17: Kemitraan Strategis</h4>
+                    <p>Kolaborasi nyata antara akademisi dan industri.</p>
                 </div>
-                
-                <button class="submit-btn" style="margin-top: 30px; width: auto; padding: 10px 30px;" onclick="showHome()">Kembali ke Beranda</button>
+                <button class="submit-btn" style="margin-top: 30px; width: auto; padding: 10px 30px;" onclick="showHome()">Kembali</button>
             </div>
         </section>
     </div>
 
     <div id="applyPage" class="page-section hidden">
         <section class="container">
-            <div class="form-section" style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto;">
+            <div class="form-section">
                 <h2 id="applyJobTitle">Formulir Lamaran</h2>
                 <input type="text" id="app_name" class="form-input" placeholder="Nama Lengkap">
                 <input type="tel" class="form-input" placeholder="No. WhatsApp">
                 <label style="font-size: 0.8rem; display: block; margin: 10px 0 5px;">Upload CV (PDF)</label>
-                <input type="file" id="cv_file" class="form-input" accept=".pdf">
+                <input type="file" class="form-input" accept=".pdf">
                 <button class="submit-btn" onclick="alert('Lamaran Terkirim!'); showHome();">Kirim Lamaran</button>
                 <button class="page-btn" style="width:100%; border:none; margin-top:10px;" onclick="showHome()">Batal</button>
             </div>
@@ -305,14 +293,10 @@
 
     <footer>
         <div class="footer-container">
-            <div class="footer-col">
-                <h3>PARTNERSHIP</h3>
-                <p>The Right Job for the Right You.</p>
-                <p>&copy; 2026 ITPLN.</p>
-            </div>
+            <div class="footer-col"><h3>PARTNERSHIP</h3><p>&copy; 2026 ITPLN.</p></div>
             <div class="footer-col">
                 <h3>Tentang Kami</h3>
-                <a onclick="showAbout()" style="color: white; text-decoration: underline;">Penjelasan Website & Komitmen SDG</a>
+                <a onclick="showAbout()" style="color: white; text-decoration: underline;">Penjelasan Website</a>
             </div>
             <div class="footer-col">
                 <h3>Hubungi ITPLN</h3>
@@ -338,6 +322,7 @@
             <div id="registerForm" style="display: none;">
                 <h3>Daftar Baru</h3>
                 <p style="font-size: 0.8rem; margin-bottom: 10px;">*Wajib @gmail.com</p>
+                <input type="text" id="reg_username" class="form-input" placeholder="Username">
                 <input type="email" id="reg_email" class="form-input" placeholder="Email">
                 <input type="password" id="reg_pass" class="form-input" placeholder="Password">
                 <input type="password" id="reg_confirm" class="form-input" placeholder="Konfirmasi Password">
@@ -362,7 +347,7 @@
             document.getElementById('btn-p' + n).classList.add('active');
         }
 
-        // --- AUTH ---
+        // --- AUTH LOGIC ---
         function openModal(v) { document.getElementById('authModal').style.display = 'flex'; switchAuth(v); }
         function closeModal() { document.getElementById('authModal').style.display = 'none'; }
         function switchAuth(v) {
@@ -371,36 +356,41 @@
         }
 
         function handleRegister() {
+            const u = document.getElementById('reg_username').value;
             const e = document.getElementById('reg_email').value.toLowerCase();
             const p = document.getElementById('reg_pass').value;
             const c = document.getElementById('reg_confirm').value;
 
+            if (u === "") { alert("Username harus diisi!"); return; }
             if (!e.endsWith("@gmail.com")) { alert("Email harus format @gmail.com!"); return; }
             if (p !== c || p === "") { alert("Password tidak sesuai!"); return; }
-            localStorage.setItem(e, p);
+            
+            // Simpan data dalam bentuk object string agar username tersimpan
+            localStorage.setItem(e, JSON.stringify({username: u, password: p}));
             alert("Berhasil Daftar!"); switchAuth('login');
         }
 
         function handleLogin() {
             const e = document.getElementById('log_email').value.toLowerCase();
             const p = document.getElementById('log_pass').value;
-            if (localStorage.getItem(e) === p && p !== "") {
-                isLogged = true; closeModal();
-                document.getElementById('navLinks').style.display = 'none';
-                document.getElementById('userMenu').style.display = 'flex';
-                document.getElementById('userNameDisplay').innerText = "Halo, " + e.split('@')[0];
+            
+            const storedData = localStorage.getItem(e);
+            if (storedData) {
+                const userData = JSON.parse(storedData);
+                if (userData.password === p) {
+                    isLogged = true;
+                    closeModal();
+                    document.getElementById('navLinks').style.display = 'none';
+                    document.getElementById('userMenu').style.display = 'flex';
+                    // Sapaan Halo, (Username)
+                    document.getElementById('userNameDisplay').innerText = "Halo, " + userData.username;
+                } else { alert("Password salah!"); }
             } else { alert("Data Salah!"); }
         }
 
         function checkAuth(job) {
-            if (!isLogged) {
-                alert("Silakan Masuk (Login) terlebih dahulu untuk melamar."); openModal('login');
-            } else {
-                hideAll();
-                document.getElementById('applyPage').classList.remove('hidden');
-                document.getElementById('applyJobTitle').innerText = "Melamar: " + job;
-                window.scrollTo(0,0);
-            }
+            if (!isLogged) { alert("Silakan Masuk (Login) terlebih dahulu."); openModal('login'); }
+            else { hideAll(); document.getElementById('applyPage').classList.remove('hidden'); document.getElementById('applyJobTitle').innerText = "Melamar: " + job; }
         }
 
         // --- AUDIO ---
@@ -410,7 +400,6 @@
             const speech = new SpeechSynthesisUtterance(text);
             speech.lang = 'id-ID'; window.speechSynthesis.speak(speech);
         }
-        function stopAudio() { window.speechSynthesis.cancel(); }
     </script>
 </body>
 </html>
