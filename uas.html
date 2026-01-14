@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnership - The Right Job for the Right You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS UTAMA --- */
+        :root {
+            --primary-navy: #19486A;
+            --accent-pink: #DD1367;
+            --bg-light: #f4f7f6;
+            --text-dark: #333;
+            --white: #ffffff;
+            --border-radius: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+        a { text-decoration: none; color: inherit; cursor: pointer; transition: 0.3s; }
+        
+        /* Bar Aksesibilitas */
+        .a11y-bar { 
+            background-color: #000; color: white; padding: 8px 5%; 
+            display: flex; justify-content: flex-end; align-items: center; gap: 15px; 
+            font-size: 0.85rem; position: sticky; top: 0; z-index: 1001;
+        }
+        .a11y-btn { background: #333; border: 1px solid #555; color: white; padding: 5px 12px; cursor: pointer; border-radius: 4px; display: flex; align-items: center; gap: 5px; }
+
+        /* Navbar */
+        header { background-color: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 38px; z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary-navy); display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { font-weight: 600; color: var(--primary-navy); font-size: 0.95rem; }
+        .btn-login { border: 2px solid var(--primary-navy); padding: 8px 20px; border-radius: 50px; font-weight: bold; }
+        .btn-signup { background-color: var(--primary-navy); color: white !important; padding: 8px 20px; border-radius: 50px; font-weight: bold; }
+
+        /* Hero */
+        .hero { background: linear-gradient(rgba(25, 72, 106, 0.8), rgba(25, 72, 106, 0.7)), url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 0 20px; }
+        .hero-content h1 { font-size: 2.8rem; margin-bottom: 15px; }
+
+        /* Lowongan Section Header */
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+        .btn-more { color: var(--accent-pink); font-weight: 700; display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 1rem; }
+        .btn-more:hover { text-decoration: underline; }
+
+        /* Container & Cards */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; flex: 1; }
+        .job-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 25px; }
+        
+        .job-card { 
+            background: white; border-radius: var(--border-radius); padding: 25px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: 0.3s; 
+            position: relative; display: flex; flex-direction: column; border: 1px solid #eee;
+        }
+        .job-card:hover { transform: translateY(-5px); border-color: var(--accent-pink); }
+
+        .card-audio-btn {
+            position: absolute; top: 20px; right: 20px;
+            background: #f0f2f5; color: var(--primary-navy);
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; cursor: pointer; border: none; transition: 0.3s;
+        }
+        .card-audio-btn:hover { background: var(--accent-pink); color: white; }
+
+        .job-title { font-size: 1.25rem; font-weight: 700; color: var(--primary-navy); margin-bottom: 5px; padding-right: 40px; }
+        .company-name { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
+        .job-criteria { margin: 15px 0; padding-left: 20px; font-size: 0.85rem; color: #555; }
+        .job-criteria li { margin-bottom: 5px; }
+        .job-criteria .highlight-difabel { color: var(--accent-pink); font-weight: 600; }
+        
+        .btn-apply { margin-top: auto; background: none; border: 1px solid var(--primary-navy); color: var(--primary-navy); padding: 10px; border-radius: 8px; font-weight: 600; text-align: center; cursor: pointer; transition: 0.3s; }
+        .btn-apply:hover { background: var(--primary-navy); color: white; }
+
+        /* Pagination */
+        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 40px; }
+        .page-btn { padding: 10px 18px; border: 1px solid #ddd; background: white; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .page-btn.active { background: var(--primary-navy); color: white; border-color: var(--primary-navy); }
+
+        /* About Us Page Layout */
+        .about-page-container { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .sdg-box { background: #f9f9f9; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 5px solid var(--accent-pink); }
+        .sdg-box h4 { color: var(--primary-navy); margin-bottom: 10px; }
+
+        /* Footer */
+        footer { background: var(--primary-navy); color: white; padding: 60px 5% 30px; margin-top: 80px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .footer-col h3 { color: var(--accent-pink); margin-bottom: 20px; font-size: 1.3rem; }
+        .social-icons { display: flex; gap: 15px; margin-top: 20px; }
+        .social-icons a { width: 45px; height: 45px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; border-radius: 50%; color: white; font-size: 1.3rem; transition: 0.3s; }
+        .social-icons a:hover { background: var(--accent-pink); transform: translateY(-5px); }
+
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 40px; border-radius: 15px; width: 100%; max-width: 400px; position: relative; text-align: center; }
+        .form-input { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 8px; }
+        .submit-btn { width: 100%; background: var(--primary-navy); color: white; padding: 12px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+        .hidden { display: none !important; }
+        body.high-contrast { background: #000; color: #ffff00; }
+        body.high-contrast .job-card, body.high-contrast header { background: #1a1a1a; border: 1px solid #ffff00; color: #ffff00; }
+    </style>
+</head>
+<body>
+
+    <div class="a11y-bar">
+        <button class="a11y-btn" onclick="window.speechSynthesis.cancel()"><i class="fa-solid fa-volume-xmark"></i> Stop Audio</button>
+        <button class="a11y-btn" onclick="document.body.classList.toggle('high-contrast')"><i class="fa-solid fa-circle-half-stroke"></i> Kontras</button>
+    </div>
+
+    <header>
+        <div class="logo" onclick="showHome()"><i class="fa-solid fa-handshake-simple" style="color:var(--accent-pink)"></i> PARTNERSHIP</div>
+        <nav class="nav-links" id="navLinks">
+            <a onclick="showHome()">Beranda</a>
+            <a onclick="showAllJobs(1)">Lowongan</a>
+            <a onclick="showAbout()">Tentang Kami</a>
+            <a class="btn-login" onclick="openModal('login')">Masuk</a>
+            <a class="btn-signup" onclick="openModal('register')">Daftar</a>
+        </nav>
+        <div class="nav-links" id="userMenu" style="display: none;">
+            <span id="userNameDisplay" style="font-weight: bold; color: var(--primary-navy);">Halo, User</span>
+            <a onclick="location.reload()" style="color: var(--accent-pink); font-size: 0.9rem;">(Keluar)</a>
+        </div>
+    </header>
+
+    <div id="homePage" class="page-section">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Karir Tanpa Batas.</h1>
+                <p>Platform pencarian kerja inklusif yang menghubungkan penyandang disabilitas dengan perusahaan peduli dan setara</p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="section-header">
+                <h2 style="color: var(--primary-navy);">Lowongan Unggulan</h2>
+                <a onclick="showAllJobs(1)" class="btn-more">Lainnya <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="job-grid">
+                <div class="job-card">
+                    <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
+                    <div class="company-logo">H</div>
+                    <div class="job-title">Informatics Researcher</div>
+                    <div class="company-name">Lab ITPLN • Jakarta</div>
+                    <ul class="job-criteria">
+                        <li>Mengembangkan prototipe IoT berbasis ESP32.</li>
+                        <li>Melakukan riset integrasi data ke cloud Thingspeak.</li>
+                        <li>Menulis dokumentasi teknis hasil penelitian.</li>
+                        <li class="highlight-difabel"><i class="fa-solid fa-wheelchair"></i> Laboratorium memiliki akses lift dan ramp kursi roda.</li>
+                    </ul>
+                    <button class="btn-apply" onclick="checkAuth('Informatics Researcher')">Lamar Sekarang</button>
+                </div>
+                <div class="job-card">
+                    <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
+                    <div class="company-logo">C</div>
+                    <div class="job-title">Cybersecurity Analyst</div>
+                    <div class="company-name">Safe Guard • Remote</div>
+                    <ul class="job-criteria">
+                        <li>Melakukan audit keamanan aplikasi dan jaringan.</li>
+                        <li>Identifikasi celah keamanan (Bug Bounty program).</li>
+                        <li>Memberikan rekomendasi perbaikan sistem.</li>
+                        <li class="highlight-difabel"><i class="fa-solid fa-house-laptop"></i> Lowongan Full WFH, sangat ramah bagi mobilitas terbatas.</li>
+                    </ul>
+                    <button class="btn-apply" onclick="checkAuth('Cybersecurity Analyst')">Lamar Sekarang</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="allJobsPage" class="page-section hidden">
+        <section class="container">
+            <h2 style="margin-bottom: 30px; color: var(--primary-navy);">Daftar Lowongan Tersedia</h2>
+            
+            <div id="jobPages">
+                <div id="jobs-p1" class="job-page">
+                    <div class="job-grid">
+                        <div class="job-card">
+                            <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
+                            <div class="job-title">Web Developer</div><div class="company-name">Tech Indo</div>
+                            <ul class="job-criteria">
+                                <li>Maintenance website menggunakan HTML, CSS, JS.</li>
+                                <li>Optimasi performa halaman web (SEO & Speed).</li>
+                                <li class="highlight-difabel"><i class="fa-solid fa-eye"></i> Layout kantor kontras tinggi, mendukung low vision.</li>
+                            </ul>
+                            <button class="btn-apply" onclick="checkAuth('Web Developer')">Lamar Sekarang</button>
+                        </div>
+                        <div class="job-card">
+                            <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
+                            <div class="job-title">Staff Admin</div><div class="company-name">PT Sejahtera</div>
+                            <ul class="job-criteria">
+                                <li>Pengarsipan data digital dan fisik.</li>
+                                <li>Manajemen korespondensi email kantor.</li>
+                                <li class="highlight-difabel"><i class="fa-solid fa-ear-deaf"></i> Lingkungan kerja tenang dan ramah Teman Tuli.</li>
+                            </ul>
+                            <button class="btn-apply" onclick="checkAuth('Staff Admin')">Lamar Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="jobs-p2" class="job-page hidden">
+                    <div class="job-grid">
+                        <div class="job-card">
+                            <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
+                            <div class="job-title">Social Media Admin</div><div class="company-name">Creative Studio</div>
+                            <ul class="job-criteria">
+                                <li>Mengelola postingan harian di Instagram & TikTok.</li>
+                                <li>Interaksi dengan followers melalui komentar/DM.</li>
+                                <li class="highlight-difabel"><i class="fa-solid fa-brain"></i> Jam kerja fleksibel, mendukung neurodivergent.</li>
+                            </ul>
+                            <button class="btn-apply" onclick="checkAuth('Social Media Admin')">Lamar Sekarang</button>
+                        </div>
+                        <div class="job-card">
+                            <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
+                            <div class="job-title">Data Entry</div><div class="company-name">Global Finance</div>
+                            <ul class="job-criteria">
+                                <li>Input data transaksi harian ke sistem keuangan.</li>
+                                <li>Verifikasi akurasi angka dan dokumen.</li>
+                                <li class="highlight-difabel"><i class="fa-solid fa-wheelchair"></i> Meja kerja ergonomis & akses kursi roda tersedia.</li>
+                            </ul>
+                            <button class="btn-apply" onclick="checkAuth('Data Entry')">Lamar Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="jobs-p3" class="job-page hidden">
+                    <div class="job-grid">
+                        <div class="job-card">
+                            <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
+                            <div class="job-title">Network Engineer</div><div class="company-name">ITPLN Infra</div>
+                            <ul class="job-criteria">
+                                <li>Konfigurasi router dan switch Cisco/Mikrotik.</li>
+                                <li>Monitoring stabilitas jaringan kampus.</li>
+                                <li class="highlight-difabel"><i class="fa-solid fa-universal-access"></i> Fasilitas toilet disabilitas dan lift di area server.</li>
+                            </ul>
+                            <button class="btn-apply" onclick="checkAuth('Network Engineer')">Lamar Sekarang</button>
+                        </div>
+                        <div class="job-card">
+                            <button class="card-audio-btn" onclick="readJobCard(this)"><i class="fa-solid fa-volume-high"></i></button>
+                            <div class="job-title">Junior Editor</div><div class="company-name">Media Kita</div>
+                            <ul class="job-criteria">
+                                <li>Editing video pendek menggunakan Adobe Premiere.</li>
+                                <li>Penambahan teks dan transisi kreatif.</li>
+                                <li class="highlight-difabel"><i class="fa-solid fa-hands-holding"></i> Dukungan peralatan bantu sesuai kebutuhan individu.</li>
+                            </ul>
+                            <button class="btn-apply" onclick="checkAuth('Junior Editor')">Lamar Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <button class="page-btn active" id="btn-p1" onclick="goToPage(1)">1</button>
+                <button class="page-btn" id="btn-p2" onclick="goToPage(2)">2</button>
+                <button class="page-btn" id="btn-p3" onclick="goToPage(3)">3</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="aboutPage" class="page-section hidden">
+        <section class="container">
+            <div class="about-page-container">
+                <h2 style="color: var(--primary-navy); margin-bottom: 20px;">Tentang Website Partnership</h2>
+                <p>Website <strong>Partnership</strong> adalah platform inovatif yang dirancang untuk menjembatani talenta-talenta luar biasa dengan peluang karir yang inklusif di ekosistem Institut Teknologi PLN dan mitra industri lainnya.</p>
+                
+                <div class="sdg-box">
+                    <h4>SDG 10: Mengurangi Kesenjangan</h4>
+                    <p>Kami berkomitmen untuk mendukung inklusi sosial dan ekonomi bagi semua orang, terlepas dari latar belakang fisik atau sosial mereka, dengan menyediakan akses yang setara terhadap informasi lowongan pekerjaan.</p>
+                </div>
+
+                <div class="sdg-box">
+                    <h4>SDG 17: Kemitraan Untuk Mencapai Tujuan</h4>
+                    <p>Melalui kolaborasi antara akademisi, industri, dan masyarakat, platform ini menjadi bukti nyata kekuatan kemitraan dalam menciptakan solusi berkelanjutan bagi pertumbuhan ekonomi nasional.</p>
+                </div>
+                
+                <button class="submit-btn" style="margin-top: 30px; width: auto; padding: 10px 30px;" onclick="showHome()">Kembali ke Beranda</button>
+            </div>
+        </section>
+    </div>
+
+    <div id="applyPage" class="page-section hidden">
+        <section class="container">
+            <div class="form-section" style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); max-width: 500px; margin: 0 auto;">
+                <h2 id="applyJobTitle">Formulir Lamaran</h2>
+                <input type="text" id="app_name" class="form-input" placeholder="Nama Lengkap">
+                <input type="tel" class="form-input" placeholder="No. WhatsApp">
+                <label style="font-size: 0.8rem; display: block; margin: 10px 0 5px;">Upload CV (PDF)</label>
+                <input type="file" id="cv_file" class="form-input" accept=".pdf">
+                <button class="submit-btn" onclick="alert('Lamaran Terkirim!'); showHome();">Kirim Lamaran</button>
+                <button class="page-btn" style="width:100%; border:none; margin-top:10px;" onclick="showHome()">Batal</button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>PARTNERSHIP</h3>
+                <p>The Right Job for the Right You.</p>
+                <p>&copy; 2026 ITPLN.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Tentang Kami</h3>
+                <a onclick="showAbout()" style="color: white; text-decoration: underline;">Penjelasan Website & Komitmen SDG</a>
+            </div>
+            <div class="footer-col">
+                <h3>Hubungi ITPLN</h3>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/itpln" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/itpln" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.facebook.com/itpln" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:24px;" onclick="closeModal()">&times;</span>
+            <div id="loginForm">
+                <h3>Masuk</h3>
+                <input type="email" id="log_email" class="form-input" placeholder="Email">
+                <input type="password" id="log_pass" class="form-input" placeholder="Password">
+                <button class="submit-btn" onclick="handleLogin()">Masuk</button>
+                <p style="margin-top:15px;">Belum punya akun? <a onclick="switchAuth('register')" style="color:var(--accent-pink)">Daftar</a></p>
+            </div>
+            <div id="registerForm" style="display: none;">
+                <h3>Daftar Baru</h3>
+                <p style="font-size: 0.8rem; margin-bottom: 10px;">*Wajib @gmail.com</p>
+                <input type="email" id="reg_email" class="form-input" placeholder="Email">
+                <input type="password" id="reg_pass" class="form-input" placeholder="Password">
+                <input type="password" id="reg_confirm" class="form-input" placeholder="Konfirmasi Password">
+                <button class="submit-btn" onclick="handleRegister()">Daftar Akun</button>
+                <p style="margin-top:15px;">Sudah punya akun? <a onclick="switchAuth('login')" style="color:var(--accent-pink)">Masuk</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isLogged = false;
+
+        function hideAll() { document.querySelectorAll('.page-section').forEach(p => p.classList.add('hidden')); }
+        function showHome() { hideAll(); document.getElementById('homePage').classList.remove('hidden'); window.scrollTo(0,0); }
+        function showAllJobs(p) { hideAll(); document.getElementById('allJobsPage').classList.remove('hidden'); goToPage(p); window.scrollTo(0,0); }
+        function showAbout() { hideAll(); document.getElementById('aboutPage').classList.remove('hidden'); window.scrollTo(0,0); }
+
+        function goToPage(n) {
+            document.querySelectorAll('.job-page').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('jobs-p' + n).classList.remove('hidden');
+            document.getElementById('btn-p' + n).classList.add('active');
+        }
+
+        // --- AUTH ---
+        function openModal(v) { document.getElementById('authModal').style.display = 'flex'; switchAuth(v); }
+        function closeModal() { document.getElementById('authModal').style.display = 'none'; }
+        function switchAuth(v) {
+            document.getElementById('loginForm').style.display = (v === 'login' ? 'block' : 'none');
+            document.getElementById('registerForm').style.display = (v === 'register' ? 'block' : 'none');
+        }
+
+        function handleRegister() {
+            const e = document.getElementById('reg_email').value.toLowerCase();
+            const p = document.getElementById('reg_pass').value;
+            const c = document.getElementById('reg_confirm').value;
+
+            if (!e.endsWith("@gmail.com")) { alert("Email harus format @gmail.com!"); return; }
+            if (p !== c || p === "") { alert("Password tidak sesuai!"); return; }
+            localStorage.setItem(e, p);
+            alert("Berhasil Daftar!"); switchAuth('login');
+        }
+
+        function handleLogin() {
+            const e = document.getElementById('log_email').value.toLowerCase();
+            const p = document.getElementById('log_pass').value;
+            if (localStorage.getItem(e) === p && p !== "") {
+                isLogged = true; closeModal();
+                document.getElementById('navLinks').style.display = 'none';
+                document.getElementById('userMenu').style.display = 'flex';
+                document.getElementById('userNameDisplay').innerText = "Halo, " + e.split('@')[0];
+            } else { alert("Data Salah!"); }
+        }
+
+        function checkAuth(job) {
+            if (!isLogged) {
+                alert("Silakan Masuk (Login) terlebih dahulu untuk melamar."); openModal('login');
+            } else {
+                hideAll();
+                document.getElementById('applyPage').classList.remove('hidden');
+                document.getElementById('applyJobTitle').innerText = "Melamar: " + job;
+                window.scrollTo(0,0);
+            }
+        }
+
+        // --- AUDIO ---
+        function readJobCard(btn) {
+            window.speechSynthesis.cancel();
+            const text = btn.closest('.job-card').innerText.replace("Lamar Sekarang", "");
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'id-ID'; window.speechSynthesis.speak(speech);
+        }
+        function stopAudio() { window.speechSynthesis.cancel(); }
+    </script>
+</body>
+</html>
